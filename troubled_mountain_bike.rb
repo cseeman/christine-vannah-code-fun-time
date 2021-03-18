@@ -1,5 +1,5 @@
 require './bicycle.rb'
-class MountainBike < Bicycle
+class TroubledMountainBike < Bicycle
   attr_reader :front_shock, :back_shock
   def post_initialize(args)
     @front_shock = args[:front_shock]
@@ -11,9 +11,11 @@ class MountainBike < Bicycle
   end
 
   def default_tire_size
-    "fat"
+    "broken"
   end
 end
 
-mountain_bike = MountainBike.new(color: "red", back_shock: 35)
-puts mountain_bike.spares.to_s
+troubled_mountain_bike = TroubledMountainBike.new(color: "red", back_shock: 35)
+puts troubled_mountain_bike.spares.to_s
+puts troubled_mountain_bike.color
+puts troubled_mountain_bike.default_tire_size
