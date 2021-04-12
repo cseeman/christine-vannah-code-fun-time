@@ -1,12 +1,16 @@
 require 'pry'
+require './schedulable.rb'
 class Bicycle
+  include Schedulable
+
   attr_reader :color, :chain, :tire_size
-  def initialize(args)
+  def initialize(args = {})
     @color = args[:color] || default_color
     @chain = args[:chain] || default_chain
     @tire_size = args[:tire_size] || default_tire_size
     post_initialize(args)
   end
+
   def spares
     { tire_size: tire_size, chain: chain }.merge(local_spares)
   end
@@ -29,6 +33,10 @@ class Bicycle
 
   def local_spares
     {}
+  end
+
+  def lead_days
+    1
   end
 end
 
